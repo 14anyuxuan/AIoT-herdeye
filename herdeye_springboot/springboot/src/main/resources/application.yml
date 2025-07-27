@@ -1,0 +1,57 @@
+server:
+  port: 9090
+
+
+# 数据库配置
+spring:
+  ai:
+    openai:
+      api-key: sk-sfgboxrvbovvdyoehckefhvqqtzytbnqzvpboyagqhjugosg
+      base-url: https://api.siliconflow.cn
+      chat:
+        options:
+          model: deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root   #你本地的数据库用户名
+    password: 17605528609Dsy! #你本地的数据库密码
+    url: jdbc:mysql://127.0.0.1:3306/yolo?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+
+# 配置mybatis实体和xml映射
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# 分页
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+#日志
+logging:
+  level:
+    root: INFO
+    com.example: DEBUG  # 指定包或类的日志级别
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/app.log    # 日志文件名
+    path: ./logs
+    max-size: 10MB        # 单文件最大大小
+    max-history: 7        # 保留历史文件个数
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true
+
+ip: localhost
+

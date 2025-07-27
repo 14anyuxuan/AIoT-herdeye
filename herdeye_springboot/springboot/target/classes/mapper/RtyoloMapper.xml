@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RtyoloMapper">
+
+    <sql id="Base_Column_List">
+        <if test="true">
+            RTid,missionIdrt,detectionTime,duration,video,yoloModule
+        </if>
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Rtyolo">
+        select
+        <include refid="Base_Column_List" />
+        from rtyolo
+        <where>
+            <if test="RTid != null"> and RTid= #{RTid}</if>
+            <if test="missionIdrt != null"> and missionIdrt= #{missionIdrt}</if>
+            <if test="detectionTime != null"> and detectionTime= #{detectionTime}</if>
+            <if test="duration != null"> and duration= #{duration}</if>
+            <if test="video != null"> and video= #{video}</if>
+            <if test="yoloModule != null"> and yoloModule= #{yoloModule}</if>
+        </where>
+        order by RTid desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Rtyolo">
+        select
+        <include refid="Base_Column_List" />
+        from rtyolo
+        where RTid = #{RTid}
+    </select>
+
+    <delete id="deleteById">
+        delete from rtyolo
+        where  RTid = #{RTid}
+    </delete>
+    <insert id="insert" parameterType="com.example.entity.Rtyolo" useGeneratedKeys="true">
+        insert into rtyolo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="RTid != null">RTid,</if>
+                <if test="missionIdrt != null">missionIdrt,</if>
+                <if test="detectionTime != null">detectionTime,</if>
+                <if test="duration != null">duration,</if>
+                <if test="video != null">video,</if>
+                <if test="yoloModule != null">yoloModule,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="RTid != null">#{RTid},</if>
+                <if test="missionIdrt != null">#{missionIdrt},</if>
+                <if test="detectionTime != null">#{detectionTime},</if>
+                <if test="duration != null">#{duration},</if>
+                <if test="video != null">#{video},</if>
+                <if test="yoloModule != null">#{yoloModule},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Rtyolo">
+        update rtyolo
+        <set>
+            <if test="missionIdrt != null">
+                missionIdrt = #{missionIdrt},
+            </if>
+            <if test="detectionTime != null">
+                detectionTime = #{detectionTime},
+            </if>
+            <if test="duration != null">
+                duration = #{duration},
+            </if>
+            <if test="video != null">
+                video = #{video},
+            </if>
+            <if test="yoloModel != null">
+                yoloModule = #{yoloModule},
+            </if>
+        </set>
+        where RTid = #{RTid}
+    </update>
+</mapper>

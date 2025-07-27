@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.MissionMapper">
+
+    <sql id="Base_Column_List">
+        <if test="true">
+            missionId,missionType,missionTime,missionPlace,workerId,uavId,sensorId,controlId
+        </if>
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Mission">
+        select
+        <include refid="Base_Column_List" />
+        from mission
+        <where>
+            <if test="missionId != null"> and missionId= #{missionId}</if>
+            <if test="missionType != null"> and missionType= #{missionType}</if>
+            <if test="missionTime != null"> and missionTime= #{missionTime}</if>
+            <if test="missionPlace != null"> and missionPlace= #{missionPlace}</if>
+            <if test="workerId != null"> and workerId= #{workerId}</if>
+            <if test="uavId != null"> and uavId= #{uavId}</if>
+            <if test="sensorId != null"> and sensorId= #{sensorId}</if>
+            <if test="controlId != null"> and controlId= #{controlId}</if>
+        </where>
+        order by missionId desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Mission">
+        select
+        <include refid="Base_Column_List" />
+        from mission
+        where missionId = #{missionId}
+    </select>
+
+    <delete id="deleteById">
+        delete from mission
+        where  missionId = #{missionId}
+    </delete>
+    <insert id="insert" parameterType="com.example.entity.Mission" useGeneratedKeys="true">
+        insert into mission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="missionId != null">missionId,</if>
+                <if test="missionType != null">missionType,</if>
+                <if test="missionTime != null">missionTime,</if>
+                <if test="missionPlace != null">missionPlace,</if>
+                <if test="workerId != null">workerId,</if>
+                <if test="uavId != null">uavId,</if>
+                <if test="sensorId != null">sensorId,</if>
+                <if test="controlId != null">controlId,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="missionId != null">#{missionId},</if>
+                <if test="missionType != null">#{missionType},</if>
+                <if test="missionTime != null">#{missionTime},</if>
+                <if test="missionPlace != null">#{missionPlace},</if>
+                <if test="workerId != null">#{workerId},</if>
+                <if test="uavId != null">#{uavId},</if>
+                <if test="sensorId != null">#{sensorId},</if>
+                <if test="controlId != null">#{controlId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Mission">
+        update mission
+        <set>
+            <if test="missionType != null">
+                missionType = #{missionType},
+            </if>
+            <if test="missionTime != null">
+                missionTime = #{missionTime},
+            </if>
+            <if test="missionPlace != null">
+                missionPlace = #{missionPlace},
+            </if>
+            <if test="workerId != null">
+                workerId = #{workerId},
+            </if>
+            <if test="uavId != null">
+                uavId = #{uavId},
+            </if>
+            <if test="sensorId != null">
+                sensorId = #{sensorId},
+            </if>
+            <if test="controlId != null">
+                controlId = #{controlId},
+            </if>
+        </set>
+        where missionId = #{missionId}
+    </update>
+</mapper>

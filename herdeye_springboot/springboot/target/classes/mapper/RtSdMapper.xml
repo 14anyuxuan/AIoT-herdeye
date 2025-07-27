@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RtSdMapper">
+
+    <sql id="Base_Column_List">
+        id,time,light,T,H,lat,lng,altitude,cogt,speed,water_level,weight,pump,motor,door
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.RtSd">
+        select
+        <include refid="Base_Column_List" />
+        from rtsd
+        <where>
+            <if test="id != null"> and id= #{id}</if>
+            <if test="time != null"> and time= #{time}</if>
+            <if test="lat != null"> and lat= #{lat}</if>
+            <if test="lng != null"> and lng= #{lng}</if>
+            <if test="altitude != null"> and altitude= #{altitude}</if>
+            <if test="cogt != null"> and cogt= #{cogt}</if>
+            <if test="speed != null"> and speed= #{speed}</if>
+            <if test="T != null"> and T= #{T}</if>
+            <if test="H != null"> and H= #{H}</if>
+            <if test="water_level != null"> and water_level= #{water_level}</if>
+            <if test="weight != null"> and weight= #{weight}</if>
+            <if test="pump != null"> and pump= #{pump}</if>
+            <if test="motor != null"> and motor= #{motor}</if>
+            <if test="light != null"> and light= #{light}</if>
+            <if test="door != null"> and door= #{door}</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.RtSd">
+        select
+        <include refid="Base_Column_List" />
+        from rtsd
+        where id = #{id}
+    </select>
+
+    <select id="selectLatest" resultType="com.example.entity.RtSd">
+        SELECT id, time, T AS t, H AS h, water_level
+        FROM yolo.rtsd
+        ORDER BY id DESC
+        LIMIT 1
+    </select>
+
+    <delete id="deleteById">
+        delete from rtsd
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.RtSd" useGeneratedKeys="true" keyProperty="id">
+        insert into rtsd
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="time != null">`time`,</if>
+            <if test="lat != null">lat,</if>
+            <if test="lng != null">lng,</if>
+            <if test="altitude != null">altitude,</if>
+            <if test="cogt != null">cogt,</if>
+            <if test="speed != null">speed,</if>
+            <if test="T != null">T,</if>
+            <if test="H != null">H,</if>
+            <if test="water_level != null">water_level,</if>
+            <if test="weight != null">weight,</if>
+            <if test="pump != null">pump,</if>
+            <if test="motor != null">motor,</if>
+            <if test="light != null">light,</if>
+            <if test="door != null">door</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="time != null">#{time},</if>
+            <if test="lat != null">#{lat},</if>
+            <if test="lng != null">#{lng},</if>
+            <if test="altitude != null">#{altitude},</if>
+            <if test="cogt != null">#{cogt},</if>
+            <if test="speed != null">#{speed},</if>
+            <if test="T != null">#{T},</if>
+            <if test="H != null">#{H},</if>
+            <if test="water_level != null">#{water_level},</if>
+            <if test="weight != null">#{weight},</if>
+            <if test="pump != null">#{pump},</if>
+            <if test="motor != null">#{motor},</if>
+            <if test="light != null">#{light},</if>
+            <if test="door != null">#{door}</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.RtSd">
+        update rtsd
+        <set>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="lat != null">
+                lat= #{lat},
+            </if>
+            <if test="lng != null">
+                lng= #{lng},
+            </if>
+            <if test="altitude != null">
+                altitude= #{altitude},
+            </if>
+            <if test="cogt != null">
+                cogt= #{cogt},
+            </if>
+            <if test="speed != null">
+                speed= #{speed},
+            </if>
+            <if test="T != null">
+                T = #{T},
+            </if>
+            <if test="H != null">
+                H = #{H},
+            </if>
+            <if test="water_level != null">
+                water_level= #{water_level},
+            </if>
+            <if test="weight != null">
+                weight= #{weight},
+            </if>
+            <if test="pump != null">
+                pump= #{pump},
+            </if>
+            <if test="motor != null">
+                motor= #{motor},
+            </if>
+            <if test="light != null">
+                light= #{light},
+            </if>
+            <if test="door != null">
+                door= #{door},
+            </if>
+        </set>
+        where id = #{id} 
+    </update>
+</mapper>

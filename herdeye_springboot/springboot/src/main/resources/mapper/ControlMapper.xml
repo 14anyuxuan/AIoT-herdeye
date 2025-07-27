@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ControlMapper">
+
+    <sql id="Base_Column_List">
+        <if test="true">
+            controlId,controlType,controlIntroduce
+        </if>
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Control">
+        select
+        <include refid="Base_Column_List" />
+        from control
+        <where>
+            <if test="controlId != null"> and controlId= #{controlId}</if>
+            <if test="controlType != null"> and controlType= #{controlType}</if>
+            <if test="controlIntroduce != null"> and controlIntroduce= #{controlIntroduce}</if>
+        </where>
+        order by controlId desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Control">
+        select
+        <include refid="Base_Column_List" />
+        from control
+        where controlId = #{controlId}
+    </select>
+
+    <delete id="deleteById">
+        delete from control
+        where  controlId = #{controlId}
+    </delete>
+    <insert id="insert" parameterType="com.example.entity.Control" useGeneratedKeys="true">
+        insert into control
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="controlId != null">controlId,</if>
+                <if test="controlType != null">controlType,</if>
+                <if test="controlIntroduce != null">controlIntroduce,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="controlId != null">#{controlId},</if>
+                <if test="controlType != null">#{controlType},</if>
+                <if test="controlIntroduce != null">#{controlIntroduce},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Control">
+        update control
+        <set>
+            <if test="controlType != null">
+                controlType = #{controlType},
+            </if>
+            <if test="controlIntroduce != null">
+                controlIntroduce = #{controlIntroduce},
+            </if>
+        </set>
+        where controlId = #{controlId}
+    </update>
+</mapper>

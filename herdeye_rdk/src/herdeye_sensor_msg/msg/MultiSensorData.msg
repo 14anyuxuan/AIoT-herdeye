@@ -1,0 +1,9 @@
+std_msgs/Header header
+float32 sht30_temperature
+float32 sht30_humidity
+float32 gps_lng
+float32 gps_lat
+float32 gps_altitude
+float32 gps_cogt
+float32 gps_speed
+uint16  gps_satellites

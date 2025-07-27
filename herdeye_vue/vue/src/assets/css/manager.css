@@ -1,0 +1,175 @@
+.manager-container {
+    background-color: #f5f7f0; /* 浅米色背景，类似自然纸张或耕地 */
+    min-height: 100vh;
+}
+
+.manager-header {
+    display: flex;
+    background-color: #4a7c27; /* 深绿色头部，代表农业和生长 */
+}
+
+.manager-header-left {
+    width: 200px;
+    height: 60px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center
+}
+
+.manager-header-left img {
+    width: 40px;
+    height: 40px;
+}
+
+.manager-header-left .title {
+    flex: 1;
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #f0f5e6; /* 浅绿色文字，与深绿背景形成对比 */
+}
+
+.manager-header-center {
+    flex: 1;
+    width: 0;
+    display: flex;
+    align-items: center
+}
+
+.manager-header-right {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.manager-header-right .avatar {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    color: #f0f5e6; /* 浅绿色文字 */
+    cursor: default
+}
+
+.manager-header-right .avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px
+}
+
+.manager-main {
+    display: flex;
+}
+
+.manager-main-left {
+    width: 200px;
+    min-height: calc(100vh - 60px);
+    box-shadow: 0 0 6px rgba(74, 124, 39, 0.2); /* 绿色调阴影 */
+}
+
+.manager-main-right {
+    flex: 1;
+    width: 0;
+    padding: 10px;
+}
+
+.manager-main-right .search {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(74, 124, 39, 0.1); /* 绿色调阴影 */
+}
+
+.manager-main-right .operation {
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(74, 124, 39, 0.1) /* 绿色调阴影 */
+}
+
+.manager-main-right .table {
+    margin-top: 5px;
+    padding: 15px 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 12px 0 rgba(74, 124, 39, 0.1) /* 绿色调阴影 */
+}
+
+.manager-main-right .table .pagination {
+    margin-top: 10px;
+}
+
+.card {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(74, 124, 39, 0.1); /* 绿色调阴影 */
+}
+
+/* ElementUI */
+.el-menu {
+    width: 200px;
+    height: 100%;
+    background-color: #3a5e20; /* 菜单深绿色背景 */
+}
+
+.el-submenu__title {
+    color: #e8f0e0; /* 菜单文字浅绿色 */
+    height: 50px;
+    line-height: 50px;
+}
+
+.el-menu-item {
+    color: #e8f0e0; /* 菜单项文字浅绿色 */
+    height: 50px;
+    line-height: 50px;
+    background-color: #3a5e20 !important; /* 菜单项背景色 */
+}
+
+.el-menu-item.is-active {
+    color: #a8d979 !important; /* 激活项亮绿色 */
+}
+
+.el-menu--inline .el-menu-item {
+    padding-left: 50px !important;
+}
+
+.el-menu .is-active {
+    color: #a8d979 !important; /* 激活状态亮绿色 */
+}
+
+.el-submenu__title:hover {
+    background-color: #2d4a18 !important; /* 悬停时更深的绿色 */
+}
+
+.el-menu-item:not(.is-active):hover {
+    background-color: #2d4a18 !important; /* 悬停时更深的绿色 */
+}
+
+.el-menu-item:hover {
+    background-color: #2d4a18 !important; /* 悬停时更深的绿色 */
+}
+
+.el-submenu__icon-arrow {
+    margin-top: -5px;
+    color: #e8f0e0; /* 箭头颜色与文字匹配 */
+}
+
+.el-breadcrumb__inner {
+    color: #e8f0e0 !important; /* 面包屑浅绿色 */
+}
+
+.el-dropdown-menu {
+    margin-top: 20px !important;
+}
+
+.el-breadcrumb {
+    margin-left: 10px;
+}
+
+th.el-table__cell {
+    background-color: #f0f7ea !important; /* 表格头部浅绿色背景 */
+    color: #3a5e20; /* 表格头部文字深绿色 */
+}
