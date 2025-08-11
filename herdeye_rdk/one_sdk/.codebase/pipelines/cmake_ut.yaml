@@ -1,0 +1,70 @@
+name: "cpp_cmake"
+# 流水线触发方式
+trigger:
+  change:
+  manual:
+jobs:
+  unit_test_amd64:
+    # 定义运行环境
+    runs-on:
+      arch: amd64
+    # for debug codecov
+    # 定义编译&测试镜像
+    image: hub.byted.org/vei/onesdk/gcc-cmake-ut:latest
+    name: ut_amd64
+    steps:
+      # 开启代理
+      # - uses: actions/setup-proxy
+      - id: install_cmake
+        commands:
+          # - sudo apt remove cmake -y
+          - pip install --upgrade pip
+          # - pip install --upgrade cmake
+          - pip install --upgrade junitparser
+          - sudo apt-get update
+          - sudo apt-get install gcc g++ lcov git -y
+      - id: unit_test
+        uses: actions/codecov
+        inputs:
+          driver: custom
+          language: cpp
+          commands:
+            - git submodule update --init --recursive
+            - bash scripts/run_test.sh
+            - bash scripts/merge_junit.sh
+          outcome:
+            coverage_format: lcov
+            coverage_paths: ["build/coverage.info"]
+            testcase_paths: ["build/report.xml"]
+  unit_test_arm64:
+    # 定义运行环境
+    runs-on:
+      arch: arm64
+    # for debug codecov
+    # 定义编译&测试镜像
+    image: hub.byted.org/vei/onesdk/gcc-cmake-ut@sha256:4a1fa2aeca0458ad096a7098997f64c3329399100122a3224861dc9854315823
+    name: ut_arm64
+    steps:
+      # 开启代理
+      # - uses: actions/setup-proxy
+      - id: install_cmake_arm64
+        commands:
+          # - sudo apt remove cmake -y
+          - pip install --upgrade pip
+          # - pip install --upgrade cmake
+          - pip install --upgrade junitparser
+          - sudo apt-get update
+          - sudo apt-get install gcc g++ lcov git -y
+      - id: unit_test_arm64
+        uses: actions/codecov
+        inputs:
+          driver: custom
+          language: cpp
+          commands:
+            - git submodule update --init --recursive
+            - bash scripts/run_test.sh
+            - bash scripts/merge_junit.sh
+          outcome:
+            coverage_format: lcov
+            coverage_paths: ["build/coverage.info"]
+            testcase_paths: ["build/report.xml"]

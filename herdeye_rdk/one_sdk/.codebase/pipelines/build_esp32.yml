@@ -1,0 +1,28 @@
+name: "build_esp32"
+# 流水线触发方式
+trigger:
+  change:
+    branches: [ "master", "develop", "release/**" ]
+  manual:
+    branches: [ "*" ]
+jobs:
+  build_esp32:
+    # 定义编译&测试镜像
+    image: hub.byted.org/vei/onesdk_esp32:v5.4
+    working-directory: ./
+    name: Build eps32
+    steps:
+      # - uses: actions/setup-consul
+      - uses: actions/setup-proxy
+      # - uses: actions/setup-blade
+      - id: extract_src
+        commands:
+         - git submodule update --init --recursive
+         - bash build.sh -DONESDK_EXTRACT_SRC=ON
+         - bash scripts/copy_onesdk_src.sh
+      - id: idf_build
+        commands:
+          - cd $IDF_PATH && . ./export.sh && cd -
+          - cd examples/onesdk_esp32 
+          - idf.py set-target esp32 && idf.py build
+

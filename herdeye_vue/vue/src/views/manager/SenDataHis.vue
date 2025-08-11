@@ -47,31 +47,66 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="p" label="压强(hPa)" min-width="120" align="right">
+        <el-table-column prop="waterlevel" label="水位" min-width="120" align="right">
           <template slot-scope="{row}">
-            {{ Math.round(row.p) }}
+            {{ Math.round(row.waterlevel) }}
           </template>
         </el-table-column>
 
-        <el-table-column prop="e" label="编码器" min-width="100" align="center"></el-table-column>
-
-        <el-table-column prop="co" label="CO(ppm)" min-width="120" align="right">
+        <el-table-column prop="weight" label="重量(g)" min-width="120" align="right">
           <template slot-scope="{row}">
-            {{ Number(row.co).toFixed(2) }}
+            {{ Math.round(row.weight) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="pump" label="泵状态" min-width="100" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.pump ? '开启' : '关闭' }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="fan" label="风扇状态" min-width="100" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.fan ? '开启' : '关闭' }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="motor" label="电机状态" min-width="100" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.motor ? '开启' : '关闭' }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="light" label="光照状态" min-width="100" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.light ? '开启' : '关闭' }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="door" label="圈门状态" min-width="100" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.door ? '开启' : '关闭' }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="heat" label="加热状态" min-width="100" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.heat ? '开启' : '关闭' }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="lng" label="经度" min-width="120" align="right">
+          <template slot-scope="{row}">
+            {{ row.lng.toFixed(6) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="lat" label="纬度" min-width="120" align="right">
+          <template slot-scope="{row}">
+            {{ row.lat.toFixed(6) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="altitude" label="海拔(m)" min-width="120" align="right">
+          <template slot-scope="{row}">
+            {{ row.altitude.toFixed(2) }}
           </template>
         </el-table-column>
 
-        <el-table-column prop="ch4" label="CH₄(ppm)" min-width="130" align="right">
-          <template slot-scope="{row}">
-            {{ Number(row.ch4).toFixed(2) }}
-          </template>
-        </el-table-column>
 
-        <el-table-column prop="etOH" label="C₂H₅OH(ppm)" min-width="150" align="right">
-          <template slot-scope="{row}">
-            {{ Number(row.etOH).toFixed(2) }}
-          </template>
-        </el-table-column>
+
+
       </el-table>
 
       <!-- 分页区域 -->

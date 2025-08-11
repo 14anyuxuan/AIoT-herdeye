@@ -1,0 +1,6 @@
+[submodule "external_libs/libwebsockets"]
+	path = external_libs/libwebsockets
+	url = git@code.byted.org:byteedge-iec/libwebsockets.git
+[submodule "external_libs/cJson"]
+	path = external_libs/cJson
+	url = git@code.byted.org:byteedge-iec/cJson.git

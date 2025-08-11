@@ -18,14 +18,16 @@ public class RtSd implements Serializable {
     private Double altitude;
     private Double cogt;
     private Double speed;
-    private Double T;
-    private Double H;
-    private Integer water_level;
+    private Double t;
+    private Double h;
+    private Integer waterlevel;
     private Integer weight;
     private Integer pump;
     private Integer motor;
     private Integer light;
     private Integer door;
+    private Integer heat;
+    private Integer fan;
 
     public Integer getId() {
         return id;
@@ -63,17 +65,17 @@ public class RtSd implements Serializable {
 
     public void setSpeed(Double speed) {this.speed = speed;}
 
-    public Double getT() {return T;}
+    public Double gett() {return t;}
 
-    public void setT(Double t) {T = t;}
+    public void sett(Double t) {this.t = t;}
 
-    public Double getH() {return H;}
+    public Double geth() {return h;}
 
-    public void setH(Double h) {H = h;}
+    public void seth(Double h) {this.h = h;}
 
-    public Integer getWater_level() {return water_level;}
+    public Integer getWaterlevel() {return waterlevel;}
 
-    public void setWater_level(Integer water_level) {this.water_level = water_level;}
+    public void setWaterlevel(Integer waterlevel) {this.waterlevel = waterlevel;}
 
     public Integer getWeight() { return weight; }
 
@@ -94,4 +96,12 @@ public class RtSd implements Serializable {
     public Integer getDoor() { return door; }
 
     public void setDoor(Integer door) { this.door = door; }
+
+    public Integer getHeat() { return heat; }
+
+    public void setHeat(Integer heat) { this.heat = heat; }
+
+    public Integer getFan() { return fan; }
+
+    public void setFan(Integer fan) { this.fan = fan; }
 }

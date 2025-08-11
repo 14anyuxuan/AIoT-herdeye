@@ -83,11 +83,5 @@ public class RtSdController {
         PageInfo<RtSd> page = rtsdService.selectPage(rtsd, pageNum, pageSize);
         return Result.success(page);
     }
-//新添（无用好像）
-    @GetMapping("/latest")
-    public Result latest() {
-        RtSd latest = rtsdService.fetchLatest();
-        return Result.success(latest);
-    }
 
 }

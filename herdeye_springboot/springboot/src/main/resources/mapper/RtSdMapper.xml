@@ -5,7 +5,7 @@
 <mapper namespace="com.example.mapper.RtSdMapper">
 
     <sql id="Base_Column_List">
-        id,time,light,T,H,lat,lng,altitude,cogt,speed,water_level,weight,pump,motor,door
+        id,time,light,t,h,lat,lng,altitude,cogt,speed,waterlevel,weight,pump,motor,door,heat,fan
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.RtSd">
@@ -20,14 +20,16 @@
             <if test="altitude != null"> and altitude= #{altitude}</if>
             <if test="cogt != null"> and cogt= #{cogt}</if>
             <if test="speed != null"> and speed= #{speed}</if>
-            <if test="T != null"> and T= #{T}</if>
-            <if test="H != null"> and H= #{H}</if>
-            <if test="water_level != null"> and water_level= #{water_level}</if>
+            <if test="t != null"> and t= #{t}</if>
+            <if test="h != null"> and h= #{h}</if>
+            <if test="waterlevel != null"> and waterlevel= #{waterlevel}</if>
             <if test="weight != null"> and weight= #{weight}</if>
             <if test="pump != null"> and pump= #{pump}</if>
             <if test="motor != null"> and motor= #{motor}</if>
             <if test="light != null"> and light= #{light}</if>
             <if test="door != null"> and door= #{door}</if>
+            <if test="heat != null"> and heat= #{heat}</if>
+            <if test="fan != null"> and fan= #{fan}</if>
         </where>
         order by id desc
     </select>
@@ -37,13 +39,6 @@
         <include refid="Base_Column_List" />
         from rtsd
         where id = #{id}
-    </select>
-
-    <select id="selectLatest" resultType="com.example.entity.RtSd">
-        SELECT id, time, T AS t, H AS h, water_level
-        FROM yolo.rtsd
-        ORDER BY id DESC
-        LIMIT 1
     </select>
 
     <delete id="deleteById">
@@ -60,14 +55,16 @@
             <if test="altitude != null">altitude,</if>
             <if test="cogt != null">cogt,</if>
             <if test="speed != null">speed,</if>
-            <if test="T != null">T,</if>
-            <if test="H != null">H,</if>
-            <if test="water_level != null">water_level,</if>
+            <if test="t != null"> t,</if>
+            <if test="h != null"> h,</if>
+            <if test="waterlevel != null">waterlevel,</if>
             <if test="weight != null">weight,</if>
             <if test="pump != null">pump,</if>
             <if test="motor != null">motor,</if>
             <if test="light != null">light,</if>
-            <if test="door != null">door</if>
+            <if test="door != null">door,</if>
+            <if test="heat != null">heat,</if>
+            <if test="fan != null">fan</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="time != null">#{time},</if>
@@ -76,14 +73,16 @@
             <if test="altitude != null">#{altitude},</if>
             <if test="cogt != null">#{cogt},</if>
             <if test="speed != null">#{speed},</if>
-            <if test="T != null">#{T},</if>
-            <if test="H != null">#{H},</if>
-            <if test="water_level != null">#{water_level},</if>
+            <if test="t != null">#{t},</if>
+            <if test="h != null">#{h},</if>
+            <if test="waterlevel != null">#{waterlevel},</if>
             <if test="weight != null">#{weight},</if>
             <if test="pump != null">#{pump},</if>
             <if test="motor != null">#{motor},</if>
             <if test="light != null">#{light},</if>
-            <if test="door != null">#{door}</if>
+            <if test="door != null">#{door},</if>
+            <if test="heat != null">#{heat},</if>
+            <if test="fan != null">#{fan}</if>
         </trim>
     </insert>
 
@@ -108,14 +107,14 @@
             <if test="speed != null">
                 speed= #{speed},
             </if>
-            <if test="T != null">
-                T = #{T},
+            <if test="t != null">
+                t = #{t},
             </if>
-            <if test="H != null">
-                H = #{H},
+            <if test="h != null">
+                h = #{h},
             </if>
-            <if test="water_level != null">
-                water_level= #{water_level},
+            <if test="waterlevel != null">
+                water_level= #{waterlevel},
             </if>
             <if test="weight != null">
                 weight= #{weight},
@@ -131,6 +130,12 @@
             </if>
             <if test="door != null">
                 door= #{door},
+            </if>
+            <if test="heat != null">
+                heat= #{heat},
+            </if>
+            <if test="fan != null">
+                fan= #{fan},
             </if>
         </set>
         where id = #{id} 

@@ -64,17 +64,19 @@ public class SseController {
         Number motor = MessageDataHolder.getProperty("motor");
         Number light = MessageDataHolder.getProperty("light");
         Number door = MessageDataHolder.getProperty("door");
+        Number heat = MessageDataHolder.getProperty("heat");
+        Number fan = MessageDataHolder.getProperty("fan");
 
         // 创建JSON对象（避免字符串拼接错误）
         String jsonData = String.format(
                 "{\"T\": %.2f, \"H\": %.2f, \"lng\": %.6f, \"lat\": %.6f, " +
                         "\"altitude\": %.6f, \"cogt\": %.6f, \"speed\": %.2f, " +
                         "\"water_level\": %d, \"weight\": %d, \"pump\": %d, " +
-                        "\"motor\": %d, \"light\": %d, \"door\": %d}",
+                        "\"motor\": %d, \"light\": %d, \"door\": %d, \"heat\": %d, \"fan\": %d}",
                 T.doubleValue(), H.doubleValue(), lng.doubleValue(), lat.doubleValue(),
                 altitude.doubleValue(), cogt.doubleValue(), speed.doubleValue(),
                 water_level.intValue(), weight.intValue(), pump.intValue(),
-                motor.intValue(), light.intValue(), door.intValue()
+                motor.intValue(), light.intValue(), door.intValue(), heat.intValue(), fan.intValue()
         );
 
         log.info("push: {}", jsonData);

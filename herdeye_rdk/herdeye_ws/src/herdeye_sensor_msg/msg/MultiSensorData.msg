@@ -1,0 +1,17 @@
+std_msgs/Header header
+float32 sht30_temperature
+float32 sht30_humidity
+float32 gps_lng
+float32 gps_lat
+float32 gps_altitude
+float32 gps_cogt
+float32 gps_speed
+uint16  gps_satellites
+uint8   water_level
+uint16  weight
+uint8   light
+uint8   waterpump
+uint8   motor
+uint8   door
+uint8   fan
+uint8   heat

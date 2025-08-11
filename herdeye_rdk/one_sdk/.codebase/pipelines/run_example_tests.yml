@@ -1,0 +1,80 @@
+name: "run_example_tests"
+# 流水线触发方式
+trigger:
+  change:
+    branches: [ "master", "develop", "release/**" ]
+  manual:
+    branches: [ "*" ]
+jobs:
+  example_tests:
+    # 定义编译&测试镜像
+    image: hub.byted.org/vei/onesdk/gcc-cmake-ut:latest
+    working-directory: ./
+    name: Examples Test
+    steps:
+      # - uses: actions/setup-consul
+      # - uses: actions/setup-proxy
+      # - uses: actions/setup-blade
+      - id: install_gcc
+        commands:
+          # - sudo apt remove cmake -y
+          - pip install --upgrade pip
+          # - pip install --upgrade cmake
+          - pip install --upgrade junitparser
+          - sudo apt-get update
+          - sudo apt-get install gcc g++ lcov git -y
+          - sudo apt-get install -y libssl-dev
+          - sudo apt-get install -y libcurl4-openssl-dev
+      - id: build
+        commands:
+          - git submodule update --init --recursive
+          - bash build.sh -DONESDK_WITH_TEST=OFF -DCMAKE_BUILD_TYPE=Debug
+      - id: run_example_tests
+        commands:
+          - ./build/examples/chat/text_image/onesdk_chat_example
+          - ./build/examples/chat/function_call/onesdk_function_call_example
+          - ./build/examples/raw_http_chat/raw_http_chat
+          - ./build/examples/onesdk_iot/onesdk_iot
+          - ./build/examples/http/http_basic
+      - id: sleep_for_5_minutes
+        commands:
+          - sleep 300
+  example_mbedtls_tests:
+    # 定义编译&测试镜像
+    image: hub.byted.org/vei/onesdk/gcc-cmake-ut:latest
+    depends: [example_tests]
+    working-directory: ./
+    name: Examples Test with mbedtls
+    steps:
+      # - uses: actions/setup-consul
+      # - uses: actions/setup-proxy
+      # - uses: actions/setup-blade
+      - id: install_gcc_with_mbedtls
+        commands:
+          # - sudo apt remove cmake -y
+          - pip install --upgrade pip
+          # - pip install --upgrade cmake
+          - pip install --upgrade junitparser
+          - sudo apt-get update
+          - sudo apt-get install gcc g++ lcov git -y
+          - sudo apt-get install -y libssl-dev
+          - sudo apt-get install -y libcurl4-openssl-dev
+      - id: install_mbedtls_with_shared
+        commands:
+          - git clone --depth 1 --branch mbedtls-3.4.0 https://github.com/Mbed-TLS/mbedtls.git /opt/mbedtls && cd /opt/mbedtls
+          - mkdir build && cd build
+          - cmake -DCMAKE_BUILD_TYPE=Debug -DUSE_SHARED_MBEDTLS_LIBRARY=On ..
+          - make -j$(nproc)
+          - make install
+          - ldconfig
+      - id: build_with_mbedtls
+        commands:
+          - git submodule update --init --recursive
+          - bash build.sh -DONESDK_WITH_TEST=OFF -DCMAKE_BUILD_TYPE=Debug -DLWS_WITH_MBEDTLS=ON  -DBUILD_SHARED_AND_STATIC_LIBS=ON
+      - id: run_example_tests_with_mbedtls
+        commands:
+          - ./build/examples/chat/text_image/onesdk_chat_example
+          - ./build/examples/chat/function_call/onesdk_function_call_example
+          - ./build/examples/raw_http_chat/raw_http_chat
+          - ./build/examples/onesdk_iot/onesdk_iot
+          - ./build/examples/http/http_basic

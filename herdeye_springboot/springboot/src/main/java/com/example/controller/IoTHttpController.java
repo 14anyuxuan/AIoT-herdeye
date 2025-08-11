@@ -49,6 +49,8 @@ public class IoTHttpController {
             int motor = params.path("home:motor").path("Value").asInt();
             int light = params.path("home:light").path("Value").asInt();
             int door = params.path("home:door").path("Value").asInt();
+            int heat = params.path("home:heat").path("Value").asInt();
+            int fan = params.path("home:fan").path("Value").asInt();
 
             // 使用正确的类型更新存储
             MessageDataHolder.updateProperty("H", humidity);
@@ -64,10 +66,12 @@ public class IoTHttpController {
             MessageDataHolder.updateProperty("motor", motor);
             MessageDataHolder.updateProperty("light", light);
             MessageDataHolder.updateProperty("door", door);
+            MessageDataHolder.updateProperty("heat", heat);
+            MessageDataHolder.updateProperty("fan", fan);
 
-            System.out.printf(">>> 解析结果：湿度H = %.2f%%   温度T = %.2f℃   经度lng = %.6f  纬度lat = %.6f%n  海拔altitude = %.6f  真北航向角cogt = %.6f  速度speed = %.2f  水位water_level = %d 重量weight = %d%n  水槽水泵pump=%d  割草机电机motor=%d  光照light=%d  圈门door=%d%n",
+            System.out.printf(">>> 解析结果：湿度H = %.2f%%   温度T = %.2f℃   经度lng = %.6f  纬度lat = %.6f%n  海拔altitude = %.6f  真北航向角cogt = %.6f  速度speed = %.2f  水位water_level = %d 重量weight = %d%n  水槽水泵pump=%d  割草机电机motor=%d  光照light=%d  圈门door=%d  加热heat=%d  风机fan=%d%n",
                     humidity, temperature, longitude, latitude, altitude, cogt, speed,
-                    water_level, weight, pump, motor, light, door);
+                    water_level, weight, pump, motor, light, door, heat, fan);
 
         } catch (Exception e) {
             System.err.println("解析物联网数据失败: " + e.getMessage());

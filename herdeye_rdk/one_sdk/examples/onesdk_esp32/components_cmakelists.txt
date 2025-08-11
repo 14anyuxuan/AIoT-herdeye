@@ -1,0 +1,11 @@
+file(GLOB_RECURSE SRC_FILES "src/*.c" "platform/*.c", "external_libs/cJson/cJSON*.c")
+idf_component_register(SRCS ${SRC_FILES}
+                    REQUIRES spi_flash esp_netif nvs_flash esp_wifi esp_driver_gpio mbedtls
+                    INCLUDE_DIRS "." "include" "platform" "src" "external_libs/cJson" 
+                    )
+ # link with libwebsockets starts
+# target_link_libraries(${COMPONENT_LIB} PRIVATE websockets)
+message(STATUS "${COMPONENT_LIB}: libwebsockets build directory: ${PROJECT_BINARY_DIR}/../libwebsockets/include")
+target_include_directories(${COMPONENT_LIB} PRIVATE "${PROJECT_BINARY_DIR}/../libwebsockets/include")
+
+# link with libwebsockets ends

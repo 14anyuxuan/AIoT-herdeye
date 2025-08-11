@@ -15,7 +15,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root   #你本地的数据库用户名
     password: 17605528609Dsy! #你本地的数据库密码
-    url: jdbc:mysql://127.0.0.1:3306/yolo?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    #url: jdbc:mysql://127.0.0.1:3306/yolo?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/yolo?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
   servlet:
     multipart:
       max-file-size: 100MB
@@ -29,6 +30,7 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+
 
 # 分页
 pagehelper:
