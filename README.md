@@ -32,3 +32,9 @@ LoRa 通信 | YOLO 目标检测 | 火山引擎 OneSDK | 扣子智能体
 系统 SpringBoot 后端，用于前端 Web 与后端 MySQL 数据库的交互及业务逻辑处理
 ### 🎨 herdeye_vue
 系统前端 Web 工程，基于 Vue 框架实现用户交互界面与数据可视化展示
+## 其他资源
+- 扣子商店（已上传扣子商店）：https://www.coze.cn/s/pVd9ooGoUi8/（智能养殖助手——牧知）
+- IOT_MCP_Serve：https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_iot（火山引擎物联网平台官方推出的 MCP Server，支持基于自然语言来管理物联网实例下的资源。
+Tools）
+- OneSDK：https://github.com/volcengine/onesdk（火山引擎OneSDK 集成开发套件是专为设备，尤其是端侧、边缘异构设备实现快速接入 AI 能力而提供的一站式解决方案。）
+- veRTC SDK：https://www.volcengine.com/docs/6348/1162272（火山引擎实时音视频 SDK）
